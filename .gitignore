@@ -4,7 +4,6 @@ venv_fastapi/
 
 .venv/
 
-
 .vscode/
 
 __pycache__/
