@@ -1,14 +1,23 @@
-# Construction de l'image docker et push sur Heroku
-docker buildx build --platform linux/amd64 -t streamlit_isen  .
+#heroku create isen-brest-mlflow
+#access:add aaddresse@mail.com --app=isen-brest-mlflow
 
-# Construction de l'image docker et push sur Heroku
-#docker build . -t streamlit_isen
+heroku container:login
 
-# Tag de l'image au registre Heroku
-docker tag streamlit_isen registry.heroku.com/streamlit-isen-kevin/web
+# Construction de l'image Docker
+docker buildx build --platform linux/amd64 -t isen-brest-mlflow .
+#docker build -t isen-brest-mlflow .
 
-# Push de l'image sur Heroku
-docker push registry.heroku.com/streamlit-isen-kevin/web              
+# Tag de l'image Docker à Heroku (IMAGE - APPLICATION Heroku)
+docker tag isen-brest-mlflow registry.heroku.com/isen-brest-mlflow/web
 
-# Lancement de l'application
-heroku container:release web -a streamlit-isen-kevin                  
+# Push de l'image Docker
+docker push registry.heroku.com/isen-brest-mlflow/web
+
+# Release de l'image Docker
+heroku container:release web -a isen-brest-mlflow
+
+# Ouverture de l'application
+heroku open -a isen-brest-mlflow
+
+# Logs de l'application
+heroku logs --app=isen-brest-mlflow --tail 

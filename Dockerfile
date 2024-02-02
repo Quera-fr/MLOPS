@@ -1,11 +1,11 @@
 FROM continuumio/miniconda3
 
-WORKDIR /home/app			
+WORKDIR /home/app
 
-RUN apt-get update			
+COPY requirements.txt /dependencies/requirements.txt
 
-RUN pip install boto3 pandas streamlit  
+RUN pip install -r /dependencies/requirements.txt
 
-COPY . /home/app
-
-CMD echo $Test && streamlit run --server.port $PORT Home.py
+CMD mlflow server --host 0.0.0.0 --port $PORT \
+ --default-artifact-root $ARTIFACT_STORE_URI \
+ --backend-store-uri $BACKEND_STORE_URI
