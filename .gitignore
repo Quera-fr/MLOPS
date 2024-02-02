@@ -1,15 +1,9 @@
-venv_fastapi/
-
-.venv_mlops/
-
 .venv/
 
 .vscode/
 
-__pycache__/
-
-.benchmarks/
-
-.benchmarks/
+.benchmark/
 
 .pytest_cache/
+
+.__pycache__/
